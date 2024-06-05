@@ -1,0 +1,19 @@
+version: '3'
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: catalago-db
+      POSTGRES_USER: catalago-db
+      POSTGRES_DB: catalago-db
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - mynetwork
+    ports:
+      - "5442:5432"
+networks:
+  mynetwork:
+volumes:
+  postgres-data:

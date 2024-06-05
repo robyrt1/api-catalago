@@ -1,0 +1,61 @@
+version: '3'
+services:
+  api-catalago-clean-architecture:
+    container_name: api-catalago-clean-architecture
+    build:
+      context: './'
+      dockerfile: ./docker/development.dockerfile
+    environment:
+      - NODE_ENV= development
+      - api_version= "1.0.0"
+    expose:
+      - 3003
+    ports:
+      - '3003:3003'
+    networks:
+      - cache-ntw
+    depends_on:
+      redis:
+        condition: service_healthy
+    env_file:
+      - ./env-files/.config.development.env
+
+
+  # postgres-db:
+  #   container_name: postgres-db
+  #   image: postgres
+  #   restart: always
+  #   environment:
+  #     POSTGRES_PASSWORD: catalago-db
+  #     POSTGRES_USER: catalago-db
+  #     POSTGRES_DB: catalago-db
+  #   volumes:
+  #     - postgres-data:/var/lib/postgresql/data
+  #   networks:
+  #     - postgres-db-ntw
+  #   ports:
+  #     - '5442:5432'
+  #   env_file:
+  #     - ./env-files/.config.development.env
+
+
+  redis:
+    image: redis
+    command: redis-server --requirepass Redis2019!
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    healthcheck:
+     test: ["CMD", "redis-cli", "-a", "Redis2019!", "ping"]
+     interval: 30s
+     timeout: 10s
+     retries: 5
+    
+networks:
+  cache-ntw:
+    driver: bridge
+    external: false  
+volumes:
+  redis-data:
+
