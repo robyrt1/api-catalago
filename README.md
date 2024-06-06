@@ -1,73 +1,83 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Sistema de Autenticação JWT e CRUD de Catálogo de Filmes
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Este projeto consiste em um sistema de autenticação JWT (JSON Web Token) e uma API RESTful para manipulação de um catálogo de filmes. A autenticação é necessária para acessar as operações CRUD (Create, Read, Update, Delete) do catálogo de filmes.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Tecnologias Utilizadas
 
-## Description
+- **TypeScript**: Linguagem de programação utilizada para desenvolver o projeto.
+- **Nest.js**: Framework web para construir aplicativos Node.js escaláveis e eficientes.
+- **TypeORM**: ORM (Object-Relational Mapping) para TypeScript e JavaScript, utilizado para interagir com o banco de dados PostgreSQL.
+- **Swagger**: Ferramenta para documentação de APIs RESTful.
+- **Docker**: Plataforma para desenvolver, enviar e executar aplicativos em contêineres.
+- **Redis**: Banco de dados em memória utilizado como cache.
+- **PostgreSQL**: Sistema gerenciador de banco de dados relacional utilizado para armazenar os dados do catálogo de filmes.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Pré-requisitos
 
-## Installation
+Certifique-se de ter as seguintes ferramentas instaladas em seu ambiente de desenvolvimento:
+
+- Node.js
+- Docker
+- Docker Compose
+
+## Instalação e Execução
+
+1. Clone o repositório para sua máquina local:
 
 ```bash
-$ npm install
+git clone https://github.com/robyrt1/api-catalago/tree/master
 ```
 
-## Running the app
+2. Instale as dependências do projeto:
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+npm install
 ```
 
-## Test
+3. Inicie os contêineres Docker:
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+docker-compose -f development.docker-compose.yml up -d
 ```
 
-## Support
+4. Execute o servidor local:
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+```bash
+npm run dev
+```
 
-## Stay in touch
+5. Acesse a documentação da API Swagger em seu navegador:
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+```
+http://localhost:PORT/api/v1/doc
+```
 
-## License
+## Rotas
 
-Nest is [MIT licensed](LICENSE).
+### Autenticação de Usuário
+
+- **POST /api/v1/jwt/user/auth**: Autentica um usuário e gera um token JWT para acessar as demais rotas.
+
+### Catálogo de Filmes
+
+- **POST /api/v1/movie**: Cria um novo filme no catálogo.
+- **PUT /api/v1/movie/**: Atualiza as informações de um filme existente.
+- **DELETE /api/v1/movie/**: Remove um filme do catálogo.
+
+## Validação de Informações
+
+As informações fornecidas nos endpoints serão validadas para garantir a integridade dos dados e a segurança da aplicação.
+
+## Deploy
+
+O projeto pode ser implantado em qualquer plataforma de nuvem que suporte aplicativos Node.js e bancos de dados PostgreSQL. Recomenda-se utilizar serviços como Amazon EC2, Heroku, Google AppEngine, entre outros.
+
+## Contribuição
+
+Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou enviar pull requests.
+
+## Autor
+
+## Autor
+
+Me chamo Robert Mendes, sou desenvolvedor back-end. Iniciei meus estudos em back-end em 2021 e entrei no mercado de trabalho em 2022. Desde então, venho aprimorando minhas habilidades em desenvolvimento de APIs, utilizando tecnologias como Node.js, Nest.js, ORMs, Docker e arquitetura limpa (Clean Architecture). Estou sempre em busca de evoluir e aprender novas tecnologias para desenvolver soluções cada vez melhores.
