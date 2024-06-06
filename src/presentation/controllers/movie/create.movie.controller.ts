@@ -1,5 +1,5 @@
 import { MovieModel } from '@domain/models/movie.model';
-import { CreateMovieUseCasePort } from '@domain/ports/usecases/movie/create.movie.use.case.port';
+import { CreateMoviePayload, CreateMovieUseCasePort } from '@domain/ports/usecases/movie/create.movie.use.case.port';
 import { createMovieJoiSchema } from '@domain/shared/validators/movie.joi.schema';
 import { MovieIocIdentifiers } from '@infrastructure/ioc/movie/movie.ioc.identifiers';
 import { JoiValidationPipe } from '@infrastructure/rest/pipes/joi.validation.pipe';
@@ -32,7 +32,7 @@ export class CreateMovieController {
   })
   @HttpCode(HttpStatus.CREATED)
   @Post('/')
-  create(@Body(new JoiValidationPipe(createMovieJoiSchema)) movie: MovieModel) {
+  create(@Body(new JoiValidationPipe(createMovieJoiSchema)) movie: CreateMoviePayload) {
     return this.createMovieUsecase.execute(movie);
   }
 }

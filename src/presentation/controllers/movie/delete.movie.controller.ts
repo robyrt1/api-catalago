@@ -1,12 +1,14 @@
 import { MovieModel } from '@domain/models/movie.model';
 import { CreateMovieUseCasePort } from '@domain/ports/usecases/movie/create.movie.use.case.port';
+import { DeleteMoviePayload, DeleteMovieUseCasePort } from '@domain/ports/usecases/movie/delete.movie.use.case.port';
 import { UpdateMovieUseCasePort } from '@domain/ports/usecases/movie/update.movie.use.case.port';
-import { createMovieJoiSchema, updateMovieJoiSchema } from '@domain/shared/validators/movie.joi.schema';
+import { DeleteMovieJoiSchema, createMovieJoiSchema } from '@domain/shared/validators/movie.joi.schema';
 import { MovieIocIdentifiers } from '@infrastructure/ioc/movie/movie.ioc.identifiers';
 import { JoiValidationPipe } from '@infrastructure/rest/pipes/joi.validation.pipe';
 import {
   Body,
   Controller,
+  Delete,
   HttpCode,
   HttpStatus,
   Inject,
@@ -18,23 +20,23 @@ import { MovieDto } from '@presentation/dtos/movie/movie.dto';
 
 @ApiTags('Movie')
 @Controller('api/v1/movie')
-export class UpdateMovieController {
+export class DeleteMovieController {
   constructor(
-    @Inject(MovieIocIdentifiers.CREATE_USECASE)
-    private updateMovieUsecase: UpdateMovieUseCasePort,
+    @Inject(MovieIocIdentifiers.DELETE_USECASE)
+    private deleteMovieUsecase: DeleteMovieUseCasePort,
   ) {}
 
-  @ApiOperation({ summary: 'update Movie' })
+  @ApiOperation({ summary: 'delete Movie' })
   @ApiResponse({
     status: HttpStatus.NO_CONTENT,
-    description: `<b>Update</b>`,
+    description: `<b>delete</b>`,
   })
   @ApiBody({
     type: MovieDto,
   })
   @HttpCode(HttpStatus.NO_CONTENT)
-  @Put('/')
-  create(@Body(new JoiValidationPipe(updateMovieJoiSchema)) movie: MovieModel) {
-    return this.updateMovieUsecase.execute(movie);
+  @Delete('/')
+  create(@Body(new JoiValidationPipe(DeleteMovieJoiSchema)) movie: DeleteMoviePayload) {
+    return this.deleteMovieUsecase.execute(movie);
   }
 }

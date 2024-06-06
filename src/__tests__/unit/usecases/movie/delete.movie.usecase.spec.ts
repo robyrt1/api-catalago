@@ -3,10 +3,11 @@ import {
   mockedUpdateMovie,
   mockedMovie,
 } from '@tests/__mocks__/movie/usecases/update.movie.use.case.mock';
+import { DeleteMovieUseCase } from '@usecases/movie/delete.movie.use.case';
 import { FindByPropMovieUseCase } from '@usecases/movie/find.by.prop.movie.use.case';
 import { UpdateMovieUseCase } from '@usecases/movie/update.movie.use.case';
 
-describe('UpdateMovieUsecase', () => {
+describe('DeleteMovieUsecase', () => {
   const mockMovieRepository = MovieRepository as jest.Mock<MovieRepository>;
   const mockedMovieRepository =
     new mockMovieRepository() as jest.Mocked<MovieRepository>;
@@ -17,30 +18,25 @@ describe('UpdateMovieUsecase', () => {
     mockedMovieRepository,
   ) as jest.Mocked<FindByPropMovieUseCase>;
 
-  const mockUpdateMovieUseCase =
-    UpdateMovieUseCase as jest.Mock<UpdateMovieUseCase>;
-  const mockedUpdateMovieUsecase = new mockUpdateMovieUseCase(
+  const mockDeleteMovieUseCase =
+    DeleteMovieUseCase as jest.Mock<DeleteMovieUseCase>;
+  const mockedDeleteMovieUsecase = new mockDeleteMovieUseCase(
     mockedMovieRepository,
     mockedFindByPropMovieUseCase,
-  ) as jest.Mocked<UpdateMovieUseCase>;
+  ) as jest.Mocked<DeleteMovieUseCase>;
 
-  it('return updated movie data', async () => {
-    const movieUpdate = mockedUpdateMovie;
+  it('return the deleted movie', async () => {
+    const movieDelete = mockedUpdateMovie;
     const movieFromDb = mockedMovie;
-    const movieUpdated = {
-      ...movieUpdate,
-      activated: true,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    };
 
-    jest.spyOn(mockedMovieRepository, 'upsert').mockResolvedValue(movieUpdated);
+
+    jest.spyOn(mockedMovieRepository, 'delete').mockResolvedValue(movieFromDb);
     jest
       .spyOn(mockedFindByPropMovieUseCase, 'execute')
       .mockResolvedValue(movieFromDb);
-    const sut = await mockedUpdateMovieUsecase.execute(movieUpdate);
+    const sut = await mockedDeleteMovieUsecase.execute(movieDelete);
 
     expect(sut).not.toBeUndefined();
-    expect(sut).toBe(movieUpdated);
+    expect(sut).toBe(movieFromDb);
   });
 });

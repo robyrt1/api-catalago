@@ -8,3 +8,13 @@ export const createMovieJoiSchema = joi.object().keys({
   director: joi.string().required(),
   releaseDate: joi.string().required(),
 });
+
+export const updateMovieJoiSchema = joi.object().keys({
+  title: joi.string().required(),
+  director: joi.string().required(),
+  releaseDate: joi.string().required(),
+});
+
+export const DeleteMovieJoiSchema = joi.object().keys({
+  id: joi.number().required(),
+});

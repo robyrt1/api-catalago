@@ -6,12 +6,10 @@ import { MovieAlreadyRegisteredException } from '@domain/exceptions/movie.except
 import { MovieModel } from '@domain/models/movie.model';
 
 import { MovieRepositoryPort } from '@domain/ports/repositories/movie.repository.port';
-import { CreateMovieUseCasePort } from '@domain/ports/usecases/movie/create.movie.use.case.port';
+import { CreateMoviePayload, CreateMovieUseCasePort } from '@domain/ports/usecases/movie/create.movie.use.case.port';
 import { FindByPropMovieMovieUseCasePort } from '@domain/ports/usecases/movie/find.by.prop.movie.use.case.port';
 
 import { MovieIocIdentifiers } from '@infrastructure/ioc/movie/movie.ioc.identifiers';
-import { MovieDto } from '@presentation/dtos/movie/movie.dto';
-import { log } from 'console';
 
 export class CreateMovieUseCase implements CreateMovieUseCasePort {
   constructor(
@@ -20,12 +18,11 @@ export class CreateMovieUseCase implements CreateMovieUseCasePort {
     @Inject(MovieIocIdentifiers.REPOSITORY)
     private movieRepository: MovieRepositoryPort,
   ) {}
-  async execute(movie: MovieDto): Promise<MovieModel> {
+  async execute(movie: CreateMoviePayload): Promise<MovieModel> {
     const shouldMovie = await this.findByPropMovieUseCase.execute({
       title: movie.title,
     });
     const shouldNotMovie = !!head([shouldMovie]);
-    log(shouldNotMovie, shouldMovie)
     if (shouldNotMovie) throw new MovieAlreadyRegisteredException();
 
     return await this.movieRepository.create(movie);

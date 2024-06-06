@@ -7,6 +7,8 @@ import { HttpResquestSharedService } from '@domain/shared/services/http/http.req
 import { UtilsSharedService } from '@domain/shared/services/utils.shared.service';
 import { CreateMovieUseCase } from '@usecases/movie/create.movie.use.case';
 import { FindByPropMovieUseCase } from '@usecases/movie/find.by.prop.movie.use.case';
+import { UpdateMovieUseCase } from '@usecases/movie/update.movie.use.case';
+import { DeleteMovieUseCase } from '@usecases/movie/delete.movie.use.case';
 
 export const movieDIProviders = [
   {
@@ -35,4 +37,12 @@ export const movieDIProviders = [
     provide: MovieIocIdentifiers.CREATE_USECASE,
     useClass: CreateMovieUseCase,
   },
+  {
+    provide: MovieIocIdentifiers.UPDATE_USECASE,
+    useClass: UpdateMovieUseCase
+  },
+  {
+    provide: MovieIocIdentifiers.DELETE_USECASE,
+    useClass: DeleteMovieUseCase
+  }
 ];
