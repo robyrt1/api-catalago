@@ -9,5 +9,5 @@ export const movieDIController = [
   FindByIdMovieController,
   CreateMovieController,
   UpdateMovieController,
-  DeleteMovieController
+  DeleteMovieController,
 ];

@@ -1,7 +1,10 @@
 import { MovieModel } from '@domain/models/movie.model';
 import { CreateMovieUseCasePort } from '@domain/ports/usecases/movie/create.movie.use.case.port';
 import { UpdateMovieUseCasePort } from '@domain/ports/usecases/movie/update.movie.use.case.port';
-import { createMovieJoiSchema, updateMovieJoiSchema } from '@domain/shared/validators/movie.joi.schema';
+import {
+  createMovieJoiSchema,
+  updateMovieJoiSchema,
+} from '@domain/shared/validators/movie.joi.schema';
 import { MovieIocIdentifiers } from '@infrastructure/ioc/movie/movie.ioc.identifiers';
 import { JoiValidationPipe } from '@infrastructure/rest/pipes/joi.validation.pipe';
 import {

@@ -6,7 +6,10 @@ import { MovieAlreadyRegisteredException } from '@domain/exceptions/movie.except
 import { MovieModel } from '@domain/models/movie.model';
 
 import { MovieRepositoryPort } from '@domain/ports/repositories/movie.repository.port';
-import { CreateMoviePayload, CreateMovieUseCasePort } from '@domain/ports/usecases/movie/create.movie.use.case.port';
+import {
+  CreateMoviePayload,
+  CreateMovieUseCasePort,
+} from '@domain/ports/usecases/movie/create.movie.use.case.port';
 import { FindByPropMovieMovieUseCasePort } from '@domain/ports/usecases/movie/find.by.prop.movie.use.case.port';
 
 import { MovieIocIdentifiers } from '@infrastructure/ioc/movie/movie.ioc.identifiers';

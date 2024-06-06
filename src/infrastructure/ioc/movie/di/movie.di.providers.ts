@@ -39,10 +39,10 @@ export const movieDIProviders = [
   },
   {
     provide: MovieIocIdentifiers.UPDATE_USECASE,
-    useClass: UpdateMovieUseCase
+    useClass: UpdateMovieUseCase,
   },
   {
     provide: MovieIocIdentifiers.DELETE_USECASE,
-    useClass: DeleteMovieUseCase
-  }
+    useClass: DeleteMovieUseCase,
+  },
 ];

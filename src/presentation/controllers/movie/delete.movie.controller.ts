@@ -1,8 +1,11 @@
 import { MovieModel } from '@domain/models/movie.model';
-import { CreateMovieUseCasePort } from '@domain/ports/usecases/movie/create.movie.use.case.port';
-import { DeleteMoviePayload, DeleteMovieUseCasePort } from '@domain/ports/usecases/movie/delete.movie.use.case.port';
-import { UpdateMovieUseCasePort } from '@domain/ports/usecases/movie/update.movie.use.case.port';
-import { DeleteMovieJoiSchema, createMovieJoiSchema } from '@domain/shared/validators/movie.joi.schema';
+import {
+  DeleteMoviePayload,
+  DeleteMovieUseCasePort,
+} from '@domain/ports/usecases/movie/delete.movie.use.case.port';
+import {
+  DeleteMovieJoiSchema,
+} from '@domain/shared/validators/movie.joi.schema';
 import { MovieIocIdentifiers } from '@infrastructure/ioc/movie/movie.ioc.identifiers';
 import { JoiValidationPipe } from '@infrastructure/rest/pipes/joi.validation.pipe';
 import {
@@ -12,8 +15,6 @@ import {
   HttpCode,
   HttpStatus,
   Inject,
-  Post,
-  Put,
 } from '@nestjs/common';
 import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { MovieDto } from '@presentation/dtos/movie/movie.dto';
@@ -36,7 +37,10 @@ export class DeleteMovieController {
   })
   @HttpCode(HttpStatus.NO_CONTENT)
   @Delete('/')
-  create(@Body(new JoiValidationPipe(DeleteMovieJoiSchema)) movie: DeleteMoviePayload) {
+  create(
+    @Body(new JoiValidationPipe(DeleteMovieJoiSchema))
+    movie: DeleteMoviePayload,
+  ) {
     return this.deleteMovieUsecase.execute(movie);
   }
 }

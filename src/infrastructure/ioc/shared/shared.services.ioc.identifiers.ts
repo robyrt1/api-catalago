@@ -3,9 +3,8 @@ export class SharedServicesIocIdentifiers {
   static ENVIROMMENT = 'environmentSharedService';
   static UTILS = 'utilsSharedService';
   static JWT_CUSTOM = 'jwtCustomSharedService';
-  static ADDRESS = 'addressSharedService';
 
-  static ROLE = 'roleSharedService';
+  static CACHE = 'cache';
 
   static NOTIFICATION_TYPE = 'notificationTypeSharedService';
 
