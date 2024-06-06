@@ -18,7 +18,7 @@ export class UpdateMovieUseCase implements UpdateMovieUseCasePort {
   ) {}
   async execute(movie: MovieDto): Promise<MovieModel> {
     const shouldMovie = await this.findByPropMovieUseCase.execute({
-      title: movie.title,
+      id: movie.id,
     });
     const shouldNotMovie = !!head([shouldMovie]);
     if (!shouldNotMovie) throw new MovieNotFoundException();

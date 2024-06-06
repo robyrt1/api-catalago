@@ -11,6 +11,7 @@ import { FindByPropMovieMovieUseCasePort } from '@domain/ports/usecases/movie/fi
 
 import { MovieIocIdentifiers } from '@infrastructure/ioc/movie/movie.ioc.identifiers';
 import { MovieDto } from '@presentation/dtos/movie/movie.dto';
+import { log } from 'console';
 
 export class CreateMovieUseCase implements CreateMovieUseCasePort {
   constructor(
@@ -24,6 +25,7 @@ export class CreateMovieUseCase implements CreateMovieUseCasePort {
       title: movie.title,
     });
     const shouldNotMovie = !!head([shouldMovie]);
+    log(shouldNotMovie, shouldMovie)
     if (shouldNotMovie) throw new MovieAlreadyRegisteredException();
 
     return await this.movieRepository.create(movie);
