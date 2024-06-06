@@ -3,9 +3,7 @@ import {
   DeleteMoviePayload,
   DeleteMovieUseCasePort,
 } from '@domain/ports/usecases/movie/delete.movie.use.case.port';
-import {
-  DeleteMovieJoiSchema,
-} from '@domain/shared/validators/movie.joi.schema';
+import { DeleteMovieJoiSchema } from '@domain/shared/validators/movie.joi.schema';
 import { MovieIocIdentifiers } from '@infrastructure/ioc/movie/movie.ioc.identifiers';
 import { JoiValidationPipe } from '@infrastructure/rest/pipes/joi.validation.pipe';
 import {

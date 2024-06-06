@@ -61,6 +61,7 @@ postman
 
 ## docker
 docker/production.dockerfile
+production.docker-compose.yml
 
 ## redis
 redis-data

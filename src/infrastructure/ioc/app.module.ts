@@ -31,7 +31,7 @@ import { MovieRepository } from '@infrastructure/database/repositories/movie.rep
         typeOrmPostgresConfigs(environmentSharedService),
       inject: [SharedServicesIocIdentifiers.ENVIROMMENT],
     }),
-    ConfigModule.forRoot({isGlobal: true }), 
+    ConfigModule.forRoot({ isGlobal: true }),
     CacheModule.registerAsync(RedisOptions),
     SharedServicesModule,
     SwaggerApiDocumentation,
@@ -41,7 +41,6 @@ import { MovieRepository } from '@infrastructure/database/repositories/movie.rep
     MovieModule,
   ],
   controllers: [],
-  providers: [
-  ],
+  providers: [],
 })
 export class AppModule {}
