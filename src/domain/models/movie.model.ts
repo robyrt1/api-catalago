@@ -12,7 +12,7 @@ export class MovieModel {
   title: string;
   director: string;
   releaseDate: string;
-  activated: string;
+  activated: boolean;
   createdAt?: Date;
   updatedAt?: Date;
 }

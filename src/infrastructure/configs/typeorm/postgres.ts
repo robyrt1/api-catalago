@@ -16,7 +16,7 @@ const configs = (environmentSharedService: EnvironmentSharedService) =>
     entities: [UserEntity, MovieEntity],
     synchronize: true,
     logging: false,
-    migrationsRun: false,
+    migrationsRun: false, 
     applicationName: 'redacted',
   }) as TypeOrmModuleAsyncOptions;
 

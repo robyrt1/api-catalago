@@ -6,6 +6,7 @@ import { SharedServicesIocIdentifiers } from '@infrastructure/ioc/shared/shared.
 import { UserIocIdentifiers } from '@infrastructure/ioc/user/user.ioc.identifiers';
 import { Inject } from '@nestjs/common';
 import { UserAuthJwtDto } from '@presentation/dtos/auth/user.auth.jwt.dto';
+import { log } from 'console';
 
 export class AuthenticateUserAuthJwtUseCase
   implements AuthenticateUserAuthJwtUseCasePort

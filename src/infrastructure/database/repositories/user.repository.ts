@@ -4,7 +4,6 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm/repository/Repository';
 import { UserEntity } from '../entities/user.entity';
-import { log } from 'console';
 
 @Injectable()
 export class UserRepository implements UserRepositoryPort {
