@@ -28,8 +28,9 @@ import { MovieModule } from './movie/movie.module';
       inject: [SharedServicesIocIdentifiers.ENVIROMMENT],
     }),
     CacheModule.register({
-      useFactory: (environmentSharedService: EnvironmentSharedService) => redisConfigs(environmentSharedService)
-      ,inject:[SharedServicesIocIdentifiers.ENVIROMMENT],
+      useFactory: (environmentSharedService: EnvironmentSharedService) =>
+        redisConfigs(environmentSharedService),
+      inject: [SharedServicesIocIdentifiers.ENVIROMMENT],
     }),
     SharedServicesModule,
     SwaggerApiDocumentation,
