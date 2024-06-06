@@ -1,11 +1,7 @@
 import { MovieRepository } from '@infrastructure/database/repositories/movie.repository';
-import {
-  mockedUpdateMovie,
-  mockedMovie,
-} from '@tests/__mocks__/movie/usecases/update.movie.use.case.mock';
+import { mockedDeleteMovie,mockedMovie } from '@tests/__mocks__/movie/usecases/delete.movie.use.case.mock';
 import { DeleteMovieUseCase } from '@usecases/movie/delete.movie.use.case';
 import { FindByPropMovieUseCase } from '@usecases/movie/find.by.prop.movie.use.case';
-import { UpdateMovieUseCase } from '@usecases/movie/update.movie.use.case';
 
 describe('DeleteMovieUsecase', () => {
   const mockMovieRepository = MovieRepository as jest.Mock<MovieRepository>;
@@ -26,7 +22,7 @@ describe('DeleteMovieUsecase', () => {
   ) as jest.Mocked<DeleteMovieUseCase>;
 
   it('return the deleted movie', async () => {
-    const movieDelete = mockedUpdateMovie;
+    const movieDelete = mockedDeleteMovie;
     const movieFromDb = mockedMovie;
 
 
