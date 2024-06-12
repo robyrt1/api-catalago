@@ -41,6 +41,7 @@ lerna-debug.log*
 .env.test.local
 .env.production.local
 .env.local
+.config.production.env
 
 # temp directory
 .temp
@@ -70,3 +71,4 @@ redis-data
 postgres-data
 postgres-data-bkp/
 config/pg_hba.conf
+postgresql.conf
