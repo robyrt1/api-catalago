@@ -12,13 +12,15 @@ export class FindAllMovieUseCase implements FindAllMovieUseCasePort {
   constructor(
     @Inject(MovieIocIdentifiers.REPOSITORY)
     private movieRepositoryPort: MovieRepositoryPort,
-    @Inject(CACHE_MANAGER) private cacheManager: Cache
-  ) { }
+    @Inject(CACHE_MANAGER) private cacheManager: Cache,
+  ) {}
   async execute(): Promise<MovieModel[]> {
-    const movieInCache = await this.cacheManager.get<MovieModel[]>(CacheKeys.FIND_ALL_MOVIE)
+    const movieInCache = await this.cacheManager.get<MovieModel[]>(
+      CacheKeys.FIND_ALL_MOVIE,
+    );
     if (isNull(movieInCache)) {
       const movie = await this.movieRepositoryPort.findAll();
-      await this.cacheManager.set(CacheKeys.FIND_ALL_MOVIE, movie)
+      await this.cacheManager.set(CacheKeys.FIND_ALL_MOVIE, movie);
       return movie;
     }
     return movieInCache;
