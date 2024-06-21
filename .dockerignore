@@ -1,0 +1,19 @@
+# Ignore PostgreSQL config files
+config/pg_hba.conf
+postgres-data
+postgres-data-bkp
+# Ignore node_modules
+node_modules
+
+# Ignore logs
+*.log
+
+# Ignore build outputs
+dist
+build
+
+# Ignore qualquer outro arquivo ou diretório não necessário
+.DS_Store
+.git
+.gitignore
+.env
