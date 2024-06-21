@@ -1,11 +1,11 @@
 name: API-CI-CD
-##TRIGER/EVENTO QUE DISPARA A AUTOMAÇÃO
+# TRIGER/EVENTO QUE DISPARA A AUTOMAÇÃO
 # on: ele é o cara que fica escutando o evento definido, que nesse caso é o push na branch main
 on: 
   push:
     branches: ["master"]
   workflow_dispatch:
-## definie minhas tarefas
+# definie minhas tarefas
 # job: conjunto de tarefas
 jobs:
 # definindo a job(ci) preciso informar o run( que tarefa ele era fazer )
