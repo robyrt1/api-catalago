@@ -3,7 +3,7 @@ name: API-CI-CD
 # on: ele é o cara que fica escutando o evento definido, que nesse caso é o push na branch main
 on: 
   push:
-    branches: ["main"]
+    branches: ["master"]
   workflow_dispatch:
 ## definie minhas tarefas
 # job: conjunto de tarefas
