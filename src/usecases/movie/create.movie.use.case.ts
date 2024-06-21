@@ -13,6 +13,8 @@ import {
 import { FindByPropMovieMovieUseCasePort } from '@domain/ports/usecases/movie/find.by.prop.movie.use.case.port';
 
 import { MovieIocIdentifiers } from '@infrastructure/ioc/movie/movie.ioc.identifiers';
+import { CACHE_MANAGER, Cache } from '@nestjs/cache-manager';
+import { CacheKeys } from '@infrastructure/shared/constants/cache.keys';
 
 export class CreateMovieUseCase implements CreateMovieUseCasePort {
   constructor(
@@ -20,6 +22,7 @@ export class CreateMovieUseCase implements CreateMovieUseCasePort {
     private findByPropMovieUseCase: FindByPropMovieMovieUseCasePort,
     @Inject(MovieIocIdentifiers.REPOSITORY)
     private movieRepository: MovieRepositoryPort,
+    @Inject(CACHE_MANAGER) private cacheManager: Cache,
   ) {}
   async execute(movie: CreateMoviePayload): Promise<MovieModel> {
     const shouldMovie = await this.findByPropMovieUseCase.execute({
@@ -28,6 +31,9 @@ export class CreateMovieUseCase implements CreateMovieUseCasePort {
     const shouldNotMovie = !!head([shouldMovie]);
     if (shouldNotMovie) throw new MovieAlreadyRegisteredException();
 
-    return await this.movieRepository.create(movie);
+    const MovieCreated = await this.movieRepository.create(movie);
+    await this.cacheManager.del(CacheKeys.FIND_ALL_MOVIE);
+
+    return MovieCreated;
   }
 }

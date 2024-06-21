@@ -14,5 +14,21 @@ jobs:
   ci:
     runs-on: ubuntu-latest
     steps: 
-      - name: Exemplo
-        run: echo "hello word"
+      - name: Checkout
+        uses: actions/checkout@v4.1.7
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          context: ./src
+          push: true
+          file: ./docker/development.dockerfile
+          tags: |
+            robyrt/api-catalago:latest
+            robyrt/api-catalago:latest:${{ github.run_number }}
