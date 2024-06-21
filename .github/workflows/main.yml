@@ -28,7 +28,7 @@ jobs:
         with:
           context: ./src
           push: true
-          file: ./docker/development.dockerfile
+          file: ./docker/pipeline.dockerfile
           tags: | 
             robyrt/api-catalago:latest
             robyrt/api-catalago:${{ github.run_number }}
