@@ -1,0 +1,18 @@
+name: API-CI-CD
+##TRIGER/EVENTO QUE DISPARA A AUTOMAÇÃO
+# on: ele é o cara que fica escutando o evento definido, que nesse caso é o push na branch main
+on: 
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+## definie minhas tarefas
+# job: conjunto de tarefas
+jobs:
+# definindo a job(ci) preciso informar o run( que tarefa ele era fazer )
+# runs-on: defino onde vou executar minha automação
+# steps: seria os passos/sequencia de execução
+  ci:
+    runs-on: ubuntu-lastest
+    steps: 
+      - name: Exemplo
+        run: echo "hello word"
