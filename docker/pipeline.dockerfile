@@ -1,7 +1,7 @@
 FROM node:20 as installer
 
 WORKDIR /api/app
-COPY . .
+COPY ../package*.json ./
 
 RUN npm install
 
