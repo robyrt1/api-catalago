@@ -3,7 +3,7 @@ FROM node:20 as installer
 
 ARG CONTEXT=.
 WORKDIR /app
-COPY ${CONTEXT}/package*.json ./
+COPY ../package*.json ./
 
 RUN npm install
 
