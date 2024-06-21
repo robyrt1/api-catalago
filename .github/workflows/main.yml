@@ -31,4 +31,4 @@ jobs:
           file: ./docker/development.dockerfile
           tags: | 
             robyrt/api-catalago:latest
-            robyrt/api-catalago:latest:${{ github.run_number }}
+            robyrt/api-catalago:${{ github.run_number }}
