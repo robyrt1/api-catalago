@@ -12,7 +12,7 @@ jobs:
 # runs-on: defino onde vou executar minha automação
 # steps: seria os passos/sequencia de execução
   ci:
-    runs-on: ubuntu-lastest
+    runs-on: ubuntu-latest
     steps: 
       - name: Exemplo
         run: echo "hello word"
