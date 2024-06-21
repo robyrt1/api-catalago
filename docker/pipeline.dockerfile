@@ -9,8 +9,4 @@ RUN npm install
 
 COPY . .
 
-FROM node:20-alpine
-ARG CONTEXT=.
-WORKDIR /app
-COPY --from=installer /app ./
 CMD ["npm", "run", "dev"]
